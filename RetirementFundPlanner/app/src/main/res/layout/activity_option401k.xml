@@ -1,0 +1,126 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.alexw.retirementfundplanner.Option401k">
+
+    <TextView
+        android:id="@+id/title_401k"
+        android:text="401k Info"
+        android:textStyle="italic"
+        android:layout_centerHorizontal="true"
+        android:textSize="22dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/current_401k_bal"
+        android:text="Current 401k Balance:"
+        android:textSize="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/title_401k"
+        android:layout_marginTop="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/bal_401k"
+            android:hint="@string/hintValue"
+            android:inputType="number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/title_401k"
+            android:layout_toEndOf="@+id/title_401k"
+            android:layout_alignBaseline="@id/current_401k_bal"/>
+
+
+    <TextView
+        android:id="@+id/current_income"
+        android:text="Current Income:"
+        android:textSize="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/current_401k_bal"
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/income_401k"
+            android:hint="@string/hintValue"
+            android:inputType="number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/title_401k"
+            android:layout_toEndOf="@+id/title_401k"
+            android:layout_alignBaseline="@id/current_income"/>
+
+    <TextView
+        android:id="@+id/expected_raise"
+        android:text="Expected Yearly Raise:"
+        android:textSize="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/current_income"
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/raise_401k"
+            android:hint="@string/hintPercent"
+            android:inputType="number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/title_401k"
+            android:layout_toEndOf="@+id/title_401k"
+            android:layout_alignBaseline="@id/expected_raise"/>
+
+    <TextView
+        android:id="@+id/expected_contrib"
+        android:text="Expected % Contribution\n(including employer match):"
+        android:textSize="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/expected_raise"
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/contrib_401k"
+            android:hint="@string/hintPercent"
+            android:inputType="number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/expected_contrib"
+            android:layout_alignLeft="@+id/raise_401k"
+            android:layout_alignStart="@+id/raise_401k" />
+
+    <TextView
+        android:id="@+id/expected_interest"
+        android:text="Expected Average Yearly \nInterest Rate:"
+        android:textSize="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/expected_contrib"
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/interest_401k"
+            android:hint="@string/hintPercent"
+            android:inputType="number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/expected_interest"
+            android:layout_alignLeft="@+id/raise_401k"
+            android:layout_alignStart="@+id/raise_401k" />
+
+    <Button
+        android:id="@+id/button_var1"
+        android:text="@string/continue_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:onClick="returnScreen"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
