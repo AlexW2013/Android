@@ -1,12 +1,13 @@
 package com.alexw.retirementplanner;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -18,6 +19,14 @@ public class OptionStocks extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_option_stocks);
+
+        DataGrabber newGrabber = new DataGrabber();
+        newGrabber.run();
+
+        Double lowest = Double.parseDouble(newGrabber.lastQuote.close);
+
+        TextView sp500View = (TextView) findViewById(R.id.yahoo_sp500);
+        sp500View.setText(lowest.toString());
     }
 
 
