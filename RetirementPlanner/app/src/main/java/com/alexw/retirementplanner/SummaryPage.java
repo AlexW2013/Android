@@ -19,7 +19,7 @@ public class SummaryPage extends ActionBarActivity {
         // Calculate final value of 401k, compounded yearly
         double finalVal401k = Option401k.balance401k;
         double newIncome = Option401k.income;
-        double interest401k = (1.0 + (Option401k.interestRate401k)/100);
+        double interest401k = (1.0 + Option401k.interestRate401k/100);
         double contribution = newIncome * (Option401k.contribution/100);
 
         // Formula for calculating 401k value

@@ -78,16 +78,6 @@
         android:layout_toEndOf="@+id/title_stocks"
         android:layout_alignBaseline="@id/expected_stockInt"/>
 
-    <TextView
-        android:id="@+id/yahoo_sp500"
-        android:text="sp500 for 2014:"
-        android:textSize="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/expected_stockInt"
-        android:layout_marginTop="35dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
 
     <Button
         android:id="@+id/button_stocks"
