@@ -1,8 +1,8 @@
 package com.alexw.retirementplanner;
 
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class OptionOther extends ActionBarActivity {
 
-    protected static int otherBalance, otherAddition, otherInterest;
+    protected static double otherBalance, otherAddition, otherInterest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +52,6 @@ public class OptionOther extends ActionBarActivity {
         EditText growthOtherText = (EditText) findViewById(R.id.int_other);
 
         // Exception checks - if any text field is blank, a popup will appear
-        // Possibly find a way to make this it's own method without crashing app
-
         String balOther = balOtherText.getText().toString();
         if(TextUtils.isEmpty(balOther)){
             Toast.makeText(this, "Please enter a value for current 401k Balance!", Toast.LENGTH_SHORT).show();
@@ -69,7 +67,7 @@ public class OptionOther extends ActionBarActivity {
 
         String growthOther = growthOtherText.getText().toString();
         if(TextUtils.isEmpty(growthOther)){
-            Toast.makeText(this, "Please enter a value for expected Raise", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter a value for expected Growth!", Toast.LENGTH_SHORT).show();
             return;
         }
 

@@ -52,8 +52,6 @@ public class OptionStocks extends ActionBarActivity {
         EditText growthStocksText = (EditText) findViewById(R.id.int_stocks);
 
         // Exception checks - if any text field is blank, a popup will appear
-        // Find a way to make this it's own method without crashing app
-
         String balStocks = balStocksText.getText().toString();
         if(TextUtils.isEmpty(balStocks)){
             Toast.makeText(this, "Please enter a value for current 401k Balance!", Toast.LENGTH_SHORT).show();
@@ -68,7 +66,7 @@ public class OptionStocks extends ActionBarActivity {
 
         String growthStocks = growthStocksText.getText().toString();
         if(TextUtils.isEmpty(growthStocks)){
-            Toast.makeText(this, "Please enter a value for expected Raise", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter a value for expected Growth!", Toast.LENGTH_SHORT).show();
             return;
         }
 
