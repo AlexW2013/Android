@@ -1,45 +1,66 @@
 package com.alexw.retirementplanner;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
 
 
-public class SummaryPage extends ActionBarActivity {
+public class SummaryPage extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary_page);
 
+        //Display individual final values for each of the three investment accounts
+        double final401k = display401kInfo();
+        double finalStock = displayStockInfo();
+        double finalOther = displayOtherInfo();
+
+        //Display the final total value of all combined investments
+        displayTotalValue(final401k, finalStock, finalOther);
+
+    }
+
+    double display401kInfo(){
+        DataStorage dataHolder = DataStorage.getInstance();
+
+        // Format String like money is normally represented
+        DecimalFormat dollarCent = new DecimalFormat( "###,###,###,###,###.00");
+
         // Calculate final value of 401k, compounded yearly
-        double finalVal401k = Option401k.balance401k;
-        double newIncome = Option401k.income;
-        double interest401k = (1.0 + Option401k.interestRate401k/100);
-        double contribution = newIncome * (Option401k.contribution/100);
+        double balance401k = (double) dataHolder.get401kData("balance401k");
+        double newIncome = (double) dataHolder.get401kData("income401k");
+        double interest401k = (1.0 + (dataHolder.get401kData("interest401k"))/100.0);
+        double contribution = (dataHolder.get401kData("contrib401k")/100.0);
+
+        double raise = (double) dataHolder.get401kData("raise401k");
 
         // Formula for calculating 401k value
         for(int i = 0; i < MainActivity.yearsLeft; i++){
-            finalVal401k = contribution + (interest401k * (finalVal401k));
-            newIncome = newIncome * (1.0 + Option401k.raise/100);
-            contribution = newIncome * (Option401k.contribution/100);
+            balance401k = (contribution * newIncome) + (interest401k * balance401k);
+            newIncome = newIncome * (1.0 + raise/100);
         }
-
-        // Format String like money is normally represented
-        DecimalFormat dollarCent = new DecimalFormat( "###,###,###,###.00");
 
         // Set textView field to 401k Val
         TextView value401k = (TextView) findViewById(R.id.final401k);
-        value401k.setText("Your 401k is valued at: $" + dollarCent.format(finalVal401k));
+        value401k.setText("Your 401k is valued at: $" + dollarCent.format(balance401k));
 
-        // Calculate and display the final value of Stocks
-        double finalValStocks = OptionStocks.stockBalance;
-        double interestStocks = (1.0 + OptionStocks.stockInterest/100);
-        double newStocks = OptionStocks.stockAddition;
+        return balance401k;
+
+    }
+
+    double displayStockInfo(){
+        DataStorage dataHolder = DataStorage.getInstance();
+
+        DecimalFormat dollarCent = new DecimalFormat( "###,###,###,###.00");
+
+        double finalValStocks = (double) dataHolder.getStockData("balanceStocks");
+        double interestStocks = (1.0 + dataHolder.getStockData("interestStocks")/100.0);
+        double newStocks = (double) dataHolder.getStockData("yearlyAddStocks");
+
         for(int i = 0; i < MainActivity.yearsLeft; i++) {
             finalValStocks = (finalValStocks + newStocks) * interestStocks;
         }
@@ -47,11 +68,17 @@ public class SummaryPage extends ActionBarActivity {
         TextView valueStocks = (TextView) findViewById(R.id.finalStocks);
         valueStocks.setText("Your combined Stocks are valued at: $" + dollarCent.format(finalValStocks));
 
+        return finalValStocks;
+    }
 
-        // Calculate and display the final value of Other Investments
-        double finalValOther = OptionOther.otherBalance;
-        double interestOther = (1.0 + OptionOther.otherInterest/100);
-        double newOther = OptionOther.otherAddition;
+    double displayOtherInfo(){
+        DataStorage dataHolder = DataStorage.getInstance();
+
+        DecimalFormat dollarCent = new DecimalFormat( "###,###,###,###.00");
+
+        double finalValOther = (double) dataHolder.getOtherData("balanceOther");
+        double interestOther = (1.0 + dataHolder.getOtherData("interestOther")/100.0);
+        double newOther = (double) dataHolder.getOtherData("yearlyAddOther");
         for(int i = 0; i < MainActivity.yearsLeft; i++) {
             finalValOther = (finalValOther + newOther) * interestOther;
         }
@@ -59,33 +86,19 @@ public class SummaryPage extends ActionBarActivity {
         TextView valueOther = (TextView) findViewById(R.id.finalOther);
         valueOther.setText("Your combined Additional Investments are valued at: $" + dollarCent.format(finalValOther));
 
+        return finalValOther;
+
+
+    }
+
+    public void displayTotalValue(double finalVal401k, double finalValOther, double finalValStocks){
+        DecimalFormat dollarCent = new DecimalFormat( "###,###,###,###.00");
 
         // Display the value of all three combined
         double finalValue = finalVal401k + finalValOther + finalValStocks;
         TextView totalValue = (TextView) findViewById(R.id.finalVal);
         totalValue.setText("Your combined total retirement fund is valued at: $" + dollarCent.format(finalValue));
+
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_summary_page, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

@@ -1,50 +1,44 @@
 package com.alexw.retirementplanner;
 
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 
-public class OptionOther extends ActionBarActivity {
-
-    protected static double otherBalance, otherAddition, otherInterest;
+public class OptionOther extends Activity {
+    private static boolean visited = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_option_other);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_option_other, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (visited) {
+            setOldValues();
         }
+        visited = true;
+    }
 
-        return super.onOptionsItemSelected(item);
+    //Set values for each field held in DataStorage
+    public void setOldValues(){
+        DataStorage dataHolder = DataStorage.getInstance();
+
+        EditText balOtherText = (EditText) findViewById(R.id.bal_other);
+        balOtherText.setText(Integer.toString(dataHolder.getOtherData("balanceOther")));
+
+        EditText addOtherText = (EditText) findViewById(R.id.add_other);
+        addOtherText.setText(Integer.toString(dataHolder.getOtherData("yearlyAddOther")));
+
+        EditText growthOtherText = (EditText) findViewById(R.id.int_other);
+        growthOtherText.setText(Integer.toString(dataHolder.getOtherData("interestOther")));
     }
 
     public void returnScreen(View view){
+        //get the singleton instance that holds all data values
+        DataStorage dataHolder = DataStorage.getInstance();
 
         //Retrieve values from editText Fields
         EditText balOtherText = (EditText) findViewById(R.id.bal_other);
@@ -57,7 +51,6 @@ public class OptionOther extends ActionBarActivity {
             Toast.makeText(this, "Please enter a value for current 401k Balance!", Toast.LENGTH_SHORT).show();
             return;
         }
-
 
         String addOther = addOtherText.getText().toString();
         if(TextUtils.isEmpty(addOther)){
@@ -72,10 +65,10 @@ public class OptionOther extends ActionBarActivity {
         }
 
 
-        //Set final values for stock page
-        otherBalance = Integer.parseInt(balOther);
-        otherAddition = Integer.parseInt(addOther);
-        otherInterest = Integer.parseInt(growthOther);
+        //Set final values for Other page
+        dataHolder.setOtherData("balanceOther", Integer.parseInt(balOther));
+        dataHolder.setOtherData("yearlyAddOther", Integer.parseInt(addOther));
+        dataHolder.setOtherData("interestOther", Integer.parseInt(growthOther));
 
         //Return to main page
         finish();

@@ -1,51 +1,53 @@
 package com.alexw.retirementplanner;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 
 
-public class Option401k extends ActionBarActivity {
-
-    public static double balance401k, income, raise, contribution, interestRate401k;
-
+public class Option401k extends Activity {
+    private static boolean visited = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_option401k);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_option401k, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        //If the page is being visited for the first time, editText fields don't need to be changed
+        if (visited) {
+            setOldValues();
         }
+        visited = true;
+    }
 
-        return super.onOptionsItemSelected(item);
+    //Set values for each field held in DataStorage
+    public void setOldValues(){
+        DataStorage dataHolder = DataStorage.getInstance();
+
+        EditText bal401kText = (EditText) findViewById(R.id.bal_401k);
+        bal401kText.setText(Integer.toString(dataHolder.get401kData("balance401k")));
+
+        EditText income401kText = (EditText) findViewById(R.id.income_401k);
+        income401kText.setText(Integer.toString(dataHolder.get401kData("income401k")));
+
+        EditText raise401kText = (EditText) findViewById(R.id.raise_401k);
+        raise401kText.setText(Integer.toString(dataHolder.get401kData("raise401k")));
+
+        EditText contrib401kText = (EditText) findViewById(R.id.contrib_401k);
+        contrib401kText.setText(Integer.toString(dataHolder.get401kData("contrib401k")));
+
+        EditText interest401kText = (EditText) findViewById(R.id.interest_401k);
+        interest401kText.setText(Integer.toString(dataHolder.get401kData("interest401k")));
+
     }
 
     public void returnScreen(View view){
+        //get the singleton instance that holds all data values
+        DataStorage dataHolder = DataStorage.getInstance();
+
         // Retrieve values from editText fields
         EditText bal401kText = (EditText) findViewById(R.id.bal_401k);
         EditText income401kText = (EditText) findViewById(R.id.income_401k);
@@ -86,11 +88,11 @@ public class Option401k extends ActionBarActivity {
         }
 
         // Set values for 401k page
-        balance401k = Double.parseDouble(bal401k);
-        income = Double.parseDouble(income401k);
-        raise = Double.parseDouble(raise401k);
-        contribution = Double.parseDouble(contrib401k);
-        interestRate401k = Double.parseDouble(interest401k);
+        dataHolder.set401kData("balance401k", Integer.parseInt(bal401k));
+        dataHolder.set401kData("income401k", Integer.parseInt(income401k));
+        dataHolder.set401kData("raise401k", Integer.parseInt(raise401k));
+        dataHolder.set401kData("contrib401k", Integer.parseInt(contrib401k));
+        dataHolder.set401kData("interest401k", Integer.parseInt(interest401k));
 
         // Return to the main page
         finish();
