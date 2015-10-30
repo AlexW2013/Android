@@ -10,41 +10,21 @@
     tools:context="com.alexw.retirementfundplanner.SummaryPage">
 
     <TextView
+        style="@style/textViewTheme"
         android:id="@+id/final401k"
-        android:textSize="20sp"
-        android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
+        android:layout_height="wrap_content"/>
     <TextView
+        style="@style/textViewTheme"
         android:id="@+id/finalStocks"
-        android:textSize="20sp"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/final401k"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/final401k" />
     <TextView
+        style="@style/textViewTheme"
         android:id="@+id/finalOther"
-        android:textSize="20sp"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/finalStocks"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
+        android:layout_below="@+id/finalStocks"/>
     <TextView
+        style="@style/textViewTheme"
         android:id="@+id/finalVal"
-        android:textSize="20sp"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/finalOther"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/finalOther"/>
 
 </RelativeLayout>

@@ -1,8 +1,35 @@
 <resources>
 
+    <color name="darker_green">#2E7D32</color>
+    <color name="dark_grey">#464646</color>
+    <color name="pale_grey">#cacaca</color>
+
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="android:Theme.Material">
         <!-- Customize your theme here. -->
+        <item name="android:colorPrimary">@color/darker_green</item>
+        <item name="android:colorBackground">@color/dark_grey</item>
+        <!--<item name="android:colorButtonNormal">@color/dark_grey</item>-->
+        <!--<item name="android:windowBackground">@android:color/primary_text_dark</item>-->
+        <item name="android:textColor">@color/pale_grey</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <!-- textView properties for text size, margin, alignment, width, height-->
+    <style name="textViewTheme">
+        <item name="android:textSize">17sp</item>
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- editText properties for width, height, alignment, and input type -->
+    <style name="editTextTheme">
+        <item name="android:inputType">number</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentEnd">true</item>
     </style>
 
 </resources>

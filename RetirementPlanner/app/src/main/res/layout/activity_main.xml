@@ -77,8 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/yearsRetirement"
-        android:layout_toRightOf="@+id/main_page_title"
-        android:layout_toEndOf="@+id/main_page_title" />
+        android:layout_alignEnd="@+id/choice_investments" />
 
     <Button
         android:id="@+id/button_final"

@@ -19,63 +19,36 @@
         android:layout_height="wrap_content" />
 
     <TextView
+        style="@style/textViewTheme"
         android:id="@+id/current_stock_bal"
         android:text="Current Stock Balance:"
-        android:textSize="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/title_stocks"
-        android:layout_marginTop="35dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_below="@id/title_stocks"/>
     <EditText
+        style="@style/editTextTheme"
         android:id="@+id/bal_stocks"
         android:hint="@string/hintValue"
-        android:textSize="15dp"
-        android:inputType="number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/title_stocks"
-        android:layout_toEndOf="@+id/title_stocks"
         android:layout_alignBaseline="@id/current_stock_bal"/>
 
     <TextView
+        style="@style/textViewTheme"
         android:id="@+id/expected_stockAdd"
         android:text="Expected Average \nYearly Addition:"
-        android:textSize="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/current_stock_bal"
-        android:layout_marginTop="35dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_below="@id/current_stock_bal" />
     <EditText
+        style="@style/editTextTheme"
         android:id="@+id/add_stocks"
         android:hint="@string/hintValue"
-        android:textSize="15dp"
-        android:inputType="number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/title_stocks"
-        android:layout_toEndOf="@+id/title_stocks"
         android:layout_alignBaseline="@id/expected_stockAdd"/>
 
     <TextView
+        style="@style/textViewTheme"
         android:id="@+id/expected_stockInt"
         android:text="Expected Annual Growth:"
-        android:textSize="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/expected_stockAdd"
-        android:layout_marginTop="35dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_below="@id/expected_stockAdd" />
     <EditText
+        style="@style/editTextTheme"
         android:id="@+id/int_stocks"
         android:hint="@string/hintPercent"
-        android:textSize="15dp"
-        android:inputType="number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/title_stocks"
-        android:layout_toEndOf="@+id/title_stocks"
         android:layout_alignBaseline="@id/expected_stockInt"/>
 
 

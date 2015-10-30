@@ -19,63 +19,38 @@
         android:layout_height="wrap_content" />
 
     <TextView
+        style="@style/textViewTheme"
         android:id="@+id/current_other_bal"
         android:text="Current Value of\nAdditional Investments:"
-        android:textSize="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/title_other"
-        android:layout_marginTop="35dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_below="@id/title_other"/>
     <EditText
+        style="@style/editTextTheme"
         android:id="@+id/bal_other"
         android:hint="@string/hintValue"
-        android:textSize="15dp"
-        android:inputType="number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/title_other"
-        android:layout_toEndOf="@+id/title_other"
         android:layout_alignBaseline="@id/current_other_bal"/>
 
-    <TextView
-        android:id="@+id/expected_otherAdd"
-        android:text="Expected New\nYearly Addition:"
-        android:textSize="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/current_other_bal"
-        android:layout_marginTop="35dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:id="@+id/add_other"
-        android:hint="@string/hintValue"
-        android:textSize="15dp"
-        android:inputType="number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/title_other"
-        android:layout_toEndOf="@+id/title_other"
-        android:layout_alignBaseline="@id/expected_otherAdd"/>
 
     <TextView
+        style="@style/textViewTheme"
+        android:id="@+id/expected_otherAdd"
+        android:text="Expected New\nYearly Addition:"
+        android:layout_below="@id/current_other_bal"/>
+    <EditText
+        style="@style/editTextTheme"
+        android:id="@+id/add_other"
+        android:hint="@string/hintValue"
+        android:layout_alignBaseline="@id/expected_otherAdd"/>
+
+
+    <TextView
+        style="@style/textViewTheme"
         android:id="@+id/expected_otherInt"
         android:text="Expected Annual Growth:"
-        android:textSize="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/expected_otherAdd"
-        android:layout_marginTop="35dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_below="@id/expected_otherAdd" />
     <EditText
+        style="@style/editTextTheme"
         android:id="@+id/int_other"
         android:hint="@string/hintPercent"
-        android:textSize="15dp"
-        android:inputType="number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/title_other"
-        android:layout_toEndOf="@+id/title_other"
         android:layout_alignBaseline="@id/expected_otherInt"/>
 
     <Button
